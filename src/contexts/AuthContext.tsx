@@ -1,5 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { auth } from "../services/firebase";
 
 type AuthContextType = {
@@ -22,7 +24,7 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider(props: AuthContextProps) {
   const [user, setUser] = useState<User>();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -68,6 +70,8 @@ export function AuthContextProvider(props: AuthContextProps) {
 
   async function logout() {
     await auth.signOut();
+    setUser({ id: "", name: "", avatarURL: "" });
+    navigate("/");
   }
 
   return (

@@ -1,8 +1,9 @@
 // import { createContext, useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { NewRoom } from "./pages/NewRoom";
 import { Home } from "./pages/Home";
+import { NewRoom } from "./pages/NewRoom";
+import { Room } from "./pages/Room";
 // import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 // import { auth } from "./services/firebase";
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/rooms/new" element={<NewRoom />} />
+          <Route path="/rooms/:id" element={<Room />} />
         </Routes>
       </AuthContextProvider>
     </BrowserRouter>
