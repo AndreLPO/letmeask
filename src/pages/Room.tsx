@@ -61,10 +61,10 @@ export function Room() {
         );
         setTitles(databaseRoom.title);
         setQuestions(parsedQuestions);
-      },
-      {
-        onlyOnce: true,
       }
+      // {
+      //   onlyOnce: true,
+      // }
     );
   }, [id]);
 
@@ -92,6 +92,7 @@ export function Room() {
 
     await push(ref(database, `rooms/${id}/questions`), question);
     alert("Pergunta criada com sucesso!");
+    console.log(newQuestion);
 
     setNewQuestion("");
   }
